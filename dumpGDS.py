@@ -31,7 +31,7 @@ regux       = re.compile ( "0x\w+" )
 #tranform data type
 strInst     = str ( cellInst )
 #search for regux
-firstInst   = regux.match ( strInst )
+firstInst   = regux.match ( strInst ) . span ()
 #print cellInst
 print firstInst
 
