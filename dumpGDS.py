@@ -1,28 +1,18 @@
 #!/usr/bin/python
-import os.path
-from gdsCAD import *
+import os
+import numpy
+import gdspy
 
-# Create some things to draw:
-amarks = templates.AlignmentMarks(('A', 'C'), (1,2))
-text = shapes.Label('Hello\nworld!', 200, (0, 0))
-box = shapes.Box((-500, -400), (1500, 400), 10, layer=2)
+cellName    = 'AND2_X2'
+gdsii       = gdspy.GdsImport ( './gds/' + cellName + '.gds' )
+cellinfo    = gdsii.extract ( cellName )
 
-# Create a Cell to hold the objects
-cell = core.Cell('EXAMPLE')
-cell.add([text, box])
-cell.add(amarks, origin=(-200, 0))
-cell.add(amarks, origin=(1200, 0))
+#display the view. Btw, 9 10 11 layers are for the metals, vias and gates
+#gdspy.LayoutViewer()
 
-# Create two copies of the Cell
-top = core.Cell('TOP')
-cell_array = core.CellArray(cell, 1, 2, (0, 850))
-top.add(cell_array)
+polyinfo    = cellinfo.get_polygons() 
 
-# Add the copied cell to a Layout and save
-layout = core.Layout('LIBRARY')
-layout.add(top)
-layout.save('output.gds')
+writeFile   = open ( cellName + '.txt' , 'w' )
+print >> writeFile , polyinfo 
+writeFile.close()
 
-#new = core.GdsImport ('output.gds', layers={2:4})
-new = core.GdsImport ('output.gds')
-new.show()
