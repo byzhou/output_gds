@@ -28,15 +28,35 @@ writeFile.close()
 cellInst    = vars ( cellinfo )
 #search for word begin with 0x
 regux       = re.compile ( "0x\w+" )
-#tranform data type
+#transform data type
 strInst     = str ( cellInst )
 #search for regux, the first matched value is stored in firstInst
-firstInst   = ( regux.search ( strInst ) ) . group ()
+firstInst   = ( regux . search ( strInst ) ) . group ()
 #All the info of the polygon including the layer info
 instWithLayer = cellinfo.get_polygons ( firstInst )
-#search for word begin with 0x
-regux       = re.compile ( "(9, 0): [array([[" )
+#transform into string
+strWithLayer = str ( instWithLayer )
+#Search for the 10th and 11th layer's polygon info
+startToken  = re.compile ( "\(10\, 0\)\: \[array\(\[\[" )
+#find out the start position of the layer 10
+startpos    = ( startToken . search ( strWithLayer ) ) . start ()
+#end token of layer 10
+endToken    = re.compile ( "\(\w+\, 0\)\: \[array\(\[\[" )
+#find out the end position of the layer 10
+endpos      = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
+#find out the number tokens on the layer 10
+numToken    = re.compile ( "\w+\.\w+" )
+coords      = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
+#print type ( coords )
+for i in len ( coords )
+    print str ( coords[i] + "\ " )
 
+ 
 
 #print polygon info
 #print  polyinfo
+
+
+
+
+
