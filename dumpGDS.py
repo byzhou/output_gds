@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 import os
-
 #regular expression
 import re
 #python gds related
@@ -46,10 +45,11 @@ endToken    = re.compile ( "\(\w+\, 0\)\: \[array\(\[\[" )
 endpos      = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
 #find out the number tokens on the layer 10
 numToken    = re.compile ( "\w+\.\w+" )
+#write all the coordinates
 coords      = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
 #print type ( coords )
-for i in len ( coords )
-    print str ( coords[i] + "\ " )
+for x in coords : 
+    print x,
 
  
 
