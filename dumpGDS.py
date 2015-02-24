@@ -9,10 +9,10 @@ import gdspy
 
 	#choos the folder
 path        = './gds/'
-for filename in os.listdir ( path ) :
+for fileName in os.listdir ( path ) :
 
 	#choose the standard cell
-    cellName = filename[:-4]
+    cellName    = fileName[:-4]
     gdsii       = gdspy.GdsImport ( './gds/' + cellName + '.gds' )
     cellinfo    = gdsii.extract ( cellName )
 
