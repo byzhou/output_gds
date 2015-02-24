@@ -8,7 +8,7 @@ import numpy
 import gdspy
 
 #import info of a cell
-cellName    = 'AND2_X1'
+cellName    = 'XOR2_X1'
 gdsii       = gdspy.GdsImport ( './gds/' + cellName + '.gds' )
 cellinfo    = gdsii.extract ( cellName )
 

@@ -12,3 +12,4 @@ needed.  The output files are the metal layers described in standard cells. All
 the infos are described in polygon desciption.
 
 ## Protected by MIT license
+`http://opensource.org/licenses/MIT`
