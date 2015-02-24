@@ -9,7 +9,7 @@ import gdspy
 
 #choos the folder
 #choose the standard cell
-fileName    = "FILLCELL_X1.txt"
+fileName    = "FILLCELL_X16.txt"
 cellName    = fileName[:-4]
 gdsii       = gdspy.GdsImport ( './gds/' + cellName + '.gds' )
 cellinfo    = gdsii.extract ( cellName )
@@ -37,25 +37,27 @@ instWithLayer = cellinfo.get_polygons ( firstInst )
 #transform into string
 strWithLayer = str ( instWithLayer )
 
-print >> writeFile , "10th layer"
-#Search for the 10th layer's polygon info
-startToken  = re.compile ( "\(10\, 0\)\: \[array\(\[\[" )
-#find out the start position of the layer 10
-startpos    = ( startToken . search ( strWithLayer ) ) . start ()
-#end token of layer 10
-endToken    = re.compile ( "\(\w+\, 0\)\: \[array\(\[\[" )
-#find out the end position of the layer 10
-endpos      = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
-#find out the number tokens on the layer 10
-numToken    = re.compile ( "\w+\.\w+" "|array" )
-#write all the coordinates
-coords      = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
-#print type ( coords )
-for x in coords :
-    if  x == "array" :
-        print >> writeFile , "\n",
-    else :
-        print >> writeFile , x,
+print cellName
+if cellName != "FILLCELL_X1" and  cellName != "FILLCELL_X2" and  cellName != "FILLCELL_X4"  and  cellName != "FILLCELL_X8"  and  cellName != "FILLCELL_X16"  and  cellName != "FILLCELL_X32" :
+	print >> writeFile , "10th layer"
+	#Search for the 10th layer's polygon info
+	startToken  = re.compile ( "\(10\, 0\)\: \[array\(\[\[" )
+	#find out the start position of the layer 10
+	startpos    = ( startToken . search ( strWithLayer ) ) . start ()
+	#end token of layer 10
+	endToken    = re.compile ( "\(\w+\, 0\)\: \[array\(\[\[" )
+	#find out the end position of the layer 10
+	endpos      = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
+	#find out the number tokens on the layer 10
+	numToken    = re.compile ( "\w+\.\w+" "|array" )
+	#write all the coordinates
+	coords      = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
+	#print type ( coords )
+	for x in coords :
+	    if  x == "array" :
+	        print >> writeFile , "\n",
+	    else :
+	        print >> writeFile , x,
 
 print >> writeFile , "\n\n11th layer"
 #Search for the 11th layer's polygon info
