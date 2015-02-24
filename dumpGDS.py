@@ -35,7 +35,9 @@ firstInst   = ( regux . search ( strInst ) ) . group ()
 instWithLayer = cellinfo.get_polygons ( firstInst )
 #transform into string
 strWithLayer = str ( instWithLayer )
-#Search for the 10th and 11th layer's polygon info
+
+print "10th layer"
+#Search for the 10th layer's polygon info
 startToken  = re.compile ( "\(10\, 0\)\: \[array\(\[\[" )
 #find out the start position of the layer 10
 startpos    = ( startToken . search ( strWithLayer ) ) . start ()
@@ -44,19 +46,34 @@ endToken    = re.compile ( "\(\w+\, 0\)\: \[array\(\[\[" )
 #find out the end position of the layer 10
 endpos      = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
 #find out the number tokens on the layer 10
-numToken    = re.compile ( "\w+\.\w+" )
+numToken    = re.compile ( "\w+\.\w+" "|array" )
 #write all the coordinates
 coords      = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
 #print type ( coords )
-for x in coords : 
-    print x,
+for x in coords :
+    if  x == "array" :
+        print "\n",
+    else :
+        print x,
 
- 
-
-#print polygon info
-#print  polyinfo
-
-
-
+print "\n\n11th layer"
+#Search for the 11th layer's polygon info
+startToken  = re.compile ( "\(11\, 0\)\: \[array\(\[\[" )
+#find out the start position of the layer 11
+startpos    = ( startToken . search ( strWithLayer ) ) . start ()
+#end token of layer 11
+endToken    = re.compile ( "\(\w+\, 0\)\: \[array\(\[\[" )
+#find out the end position of the layer 11
+endpos      = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
+#find out the number tokens on the layer 11
+numToken    = re.compile ( "\w+\.\w+" "|array" )
+#write all the coordinates
+coords      = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
+#print type ( coords )
+for x in coords :
+    if  x == "array" :
+        print "\n",
+    else :
+        print x,
 
 
