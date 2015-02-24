@@ -7,6 +7,10 @@ import re
 import numpy
 import gdspy
 
+#choos the folder
+path        = './gds/'
+for filename in os.listdir ( path ) :
+    print filename,
 #choose the standard cell
 cellName    = 'AND2_X2'
 gdsii       = gdspy.GdsImport ( './gds/' + cellName + '.gds' )
