@@ -30,10 +30,13 @@ cellInst    = vars ( cellinfo )
 regux       = re.compile ( "0x\w+" )
 #tranform data type
 strInst     = str ( cellInst )
-#search for regux
-firstInst   = regux.match ( strInst ) . span ()
-#print cellInst
-print firstInst
+#search for regux, the first matched value is stored in firstInst
+firstInst   = ( regux.search ( strInst ) ) . group ()
+#All the info of the polygon including the layer info
+instWithLayer = cellinfo.get_polygons ( firstInst )
+#search for word begin with 0x
+regux       = re.compile ( "(9, 0): [array([[" )
+
 
 #print polygon info
 #print  polyinfo
