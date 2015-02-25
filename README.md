@@ -13,3 +13,9 @@ the infos are described in polygon desciption.
 
 ## Protected by MIT license
 `http://opensource.org/licenses/MIT`
+
+##install python on a different dire
+`./configure --prefix=$HOME/tools --with-threads --enable-shared`
+
+##install packages on a different dir
+`python setup.py install --home=$DIFFDIR`
