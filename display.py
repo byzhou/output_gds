@@ -1,5 +1,4 @@
-#!/usr/bin/python
-
+#!/ad/eng/research/eng_research_icsg/mixed/bobzhou/software/tools/bin/python
 import os
 #regular expression
 import re
