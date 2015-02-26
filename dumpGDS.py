@@ -13,7 +13,7 @@ outputPath  = './txt/'
 for fileName in os.listdir ( path ) :
 
 	#make sure the file reading do not conflict with version control
-	if fileName != '.gitignore' or fileName != 'NangateOpenCellLibrary.gds': 
+	if fileName != '.gitignore' and fileName != 'NangateOpenCellLibrary.gds': 
 		#choose the standard cell
 		cellName	= fileName[:-4]
 		gdsii	   = gdspy.GdsImport ( path + cellName + '.gds' )

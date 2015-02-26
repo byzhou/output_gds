@@ -9,7 +9,7 @@ import gdspy
 
 #choos the folder
 #choose the standard cell
-fileName	= "TBUF_X16.txt"
+fileName	= "TBUF_X1.txt"
 cellName	= fileName[:-4]
 gdsii	   = gdspy.GdsImport ( './gds/' + cellName + '.gds' )
 cellinfo	= gdsii.extract ( cellName )
@@ -57,7 +57,7 @@ if cellName != "FILLCELL_X1" and  cellName != "FILLCELL_X2" and  cellName != "FI
 		if  x == "array" :
 			writeFile . write ( "\n" ) 
 		else :
-			writeFile . write ( "%s " % x ) 
+			writeFile . write ( str ( x ) + " " ) 
 
 writeFile . write ( "\n\n11th layer" )
 #Search for the 11th layer's polygon info
@@ -77,7 +77,7 @@ for x in coords :
 	if  x == "array" :
 		writeFile . write ( "\n" ) 
 	else :
-        writeFile . write ( "%s " % x ) 
+		writeFile . write ( str ( x ) + " " ) 
 
 writeFile.close()
 print ( "close the file %s.txt\n" % cellName )
