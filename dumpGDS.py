@@ -13,7 +13,7 @@ outputPath  = './txt/'
 for fileName in os.listdir ( path ) :
 
 	#make sure the file reading do not conflict with version control
-	if fileName != '.gitignore': 
+	if fileName != '.gitignore' or fileName != 'NangateOpenCellLibrary.gds': 
 		#choose the standard cell
 		cellName	= fileName[:-4]
 		gdsii	   = gdspy.GdsImport ( path + cellName + '.gds' )
@@ -62,7 +62,7 @@ for fileName in os.listdir ( path ) :
 				if  x == "array" :
 					writeFile . write ( "\n" ) 
 				else :
-					writeFile . write ( "%s " ) 
+					writeFile . write ( str ( x ) + " " ) 
 	
 		print ( "\n\n11th layer" , file = writeFile )
 		#Search for the 11th layer's polygon info
@@ -82,7 +82,7 @@ for fileName in os.listdir ( path ) :
 			if  x == "array" :
 				writeFile . write ( "\n" ) 
 			else :
-				writeFile . write ( "%s " ) 
+				writeFile . write ( str ( x ) + " " ) 
 	
 		writeFile.close()
 		print ( "close the file %s.txt\n" % cellName )
