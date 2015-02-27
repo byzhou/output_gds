@@ -8,7 +8,7 @@ figure(2);
 close 2;
 clear all;
 tic
-fid = fopen('SDFFRS_X2.lef');
+fid = fopen('./txt/SDFFRS_X2.txt');
 %count=0;
 if fid == -1
     disp('File open not successful')

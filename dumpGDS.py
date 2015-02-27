@@ -60,7 +60,7 @@ for fileName in os.listdir ( path ) :
 			#print type ( coords )
 			for x in coords :
 				if  x == "array" :
-					writeFile . write ( "\n" + "POLYGON" ) 
+					writeFile . write ( "\n" + "POLYGON " ) 
 				else :
 					writeFile . write ( str ( x ) + " " ) 
 	
@@ -80,7 +80,7 @@ for fileName in os.listdir ( path ) :
 		#print type ( coords )
 		for x in coords :
 			if  x == "array" :
-				writeFile . write ( "\n" + "POLYGON" ) 
+				writeFile . write ( "\n" + "POLYGON " ) 
 			else :
 				writeFile . write ( str ( x ) + " " ) 
 	
