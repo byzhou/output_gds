@@ -14,8 +14,15 @@ the infos are described in polygon desciption.
 ## Protected by MIT license
 `http://opensource.org/licenses/MIT`
 
-##install python on a different dire
+##install python on a different dir
 `./configure --prefix=$HOME/tools --with-threads --enable-shared`
 
 ##install packages on a different dir
 `python setup.py install --home=$DIFFDIR`
+
+##export path for python
+
+	LD_LIBRARY_PATH=/ad/eng/research/eng_research_icsg/mixed/bobzhou/software/tools/lib64/
+	export LD_LIBRARY_PATH
+	PATH=/ad/eng/research/eng_research_icsg/mixed/bobzhou/software/tools/bin/python3.4:$PATH
+	export PATH

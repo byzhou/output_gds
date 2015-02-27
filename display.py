@@ -7,7 +7,7 @@ import numpy
 import gdspy
 
 #import info of a cell
-cellName    = 'TBUF_X16'
+cellName    = 'XOR2_X1'
 gdsii       = gdspy.GdsImport ( './gds/' + cellName + '.gds' )
 cellinfo    = gdsii.extract ( cellName )
 
