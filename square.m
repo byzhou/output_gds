@@ -1,6 +1,8 @@
-function [x,y,newx,newy,orderedvecx,orderedvecy,outputx,outputy]=square(z)
+function [x,y,newx,newy,orderedvecx,orderedvecy,outputx,outputy]=square(z,plots)
 %function [x,y,newx,newy,orderedvecx,orderedvecy,outputx,outputy]=square(z)
 %z is just the vector of unparsed coordinates from lef file
+%plots 0 is no plotting
+%plots 1 is yes plotting
 
 %EXAMPLE: original lef coordinates
 %       LAYER metal1 ;
@@ -15,8 +17,10 @@ function [x,y,newx,newy,orderedvecx,orderedvecy,outputx,outputy]=square(z)
 %new coordinates added to aid in finding rectangles
 
 %close all figures
-figure(1);
-close 1;
+if plots
+    figure(1);
+    close 1;
+end
 newx=[];
 newy=[];
 
@@ -27,22 +31,31 @@ for i=1:z_length/2
     x(i)=z(2*i-1);
 end
 %figure(1);
-figure('units','normalized','outerposition',[0 0 1 1])
-subplot(2,2,1);
-plot(x,y,'*')
-axis equal;
-title('given')
-hold on
-plot(x,y)
+if plots
+    figure('units','normalized','outerposition',[0 0 1 1])
+    subplot(2,2,1);
+    plot(x,y,'*')
+    axis equal;
+    title('given')
+    hold on
+    plot(x,y)
+end
 A = polyarea(x,y);
 B = 0;
 
 %figure(2);
-subplot(2,2,2);
-fill(x,y,'b');
-string=sprintf('Area = %f',A);
-title(string);
-axis equal;
+if plots
+    subplot(2,2,2);
+    fill(x,y,'b');
+    string=sprintf('Area = %f',A);
+    title(string);
+    axis equal;
+    figure(3)
+    fill(x,y,'b');
+    hold on;
+    axis equal;
+    figure(1);
+end
 
 yup=unique(y);
 ydown=fliplr(yup);
@@ -107,19 +120,23 @@ end
 
 
 %figure(3);
-subplot(2,2,3);
-plot(newx,newy,'o')
-axis equal;
-hold on;
-plot(x,y,'*')
-title('result')
-plot(x,y)
+if plots
+    subplot(2,2,3);
+    plot(newx,newy,'o')
+    axis equal;
+    hold on;
+    plot(x,y,'*')
+    title('result')
+    plot(x,y)
+end
 
 
 %figure(4);
-subplot(2,2,4);
-%plot(orderedvecx,orderedvecy,'*')
-hold on;
+if plots
+    subplot(2,2,4);
+    %plot(orderedvecx,orderedvecy,'*')
+    hold on;
+end
 
 gcountx=1;
 gcounty=1;
@@ -232,22 +249,26 @@ for i=1:length(orderedvecx)
             for l=1:outputcount
                 if (sort(outputx(l,1:4))==sort([orderedvecx(i),tp1x,tp3x,tp2x])&sort(outputy(l,1:4))==sort([orderedvecy(i),tp1y,tp3y,tp2y]))
                     duplicate=1;
-                end          
+                end
             end
             if ~duplicate
-                figure(1);
-                subplot(2,2,4);
-                hold on;
-                fill([orderedvecx(i),tp1x,tp3x,tp2x],[orderedvecy(i),tp1y,tp3y,tp2y],'b')
+                if plots
+                    figure(1);
+                    subplot(2,2,4);
+                    hold on;
+                    fill([orderedvecx(i),tp1x,tp3x,tp2x],[orderedvecy(i),tp1y,tp3y,tp2y],'b')
+                end
                 B=B+polyarea([orderedvecx(i),tp1x,tp3x,tp2x],[orderedvecy(i),tp1y,tp3y,tp2y]);
-                string=sprintf('Area = %f',B);
-                title(string);
-                axis equal;
-                figure(2);
-                movegui(2,'northwest');
-                hold on;
-                fill([orderedvecx(i),tp1x,tp3x,tp2x],[orderedvecy(i),tp1y,tp3y,tp2y],'b')
-                axis equal;
+                if plots
+                    string=sprintf('Area = %f',B);
+                    title(string);
+                    axis equal;
+                    figure(2);
+                    movegui(2,'northwest');
+                    fill([orderedvecx(i),tp1x,tp3x,tp2x],[orderedvecy(i),tp1y,tp3y,tp2y],'b')
+                    hold on;
+                    axis equal;
+                end
                 outputx(outputcount+1,1:4)=[orderedvecx(i),tp1x,tp3x,tp2x];
                 outputy(outputcount+1,1:4)=[orderedvecy(i),tp1y,tp3y,tp2y];
                 outputcount=outputcount+1;
@@ -351,25 +372,31 @@ for i=1:length(innerpointsx)
                     end
                 end
             end
-         
+            
             duplicate=0;
             for l=1:outputcount
                 if (sort(outputx(l,1:4))==sort([innerpointsx(i),tp1x,tp3x,tp2x])&sort(outputy(l,1:4))==sort([innerpointsy(i),tp1y,tp3y,tp2y]))
                     duplicate=1;
-                end          
+                end
             end
             if ~duplicate
-                figure(1);
-                subplot(2,2,4);
-                hold on;
-                fill([innerpointsx(i),tp1x,tp3x,tp2x],[innerpointsy(i),tp1y,tp3y,tp2y],'b')
+                if plots
+                    figure(1);
+                    subplot(2,2,4);
+                    hold on;
+                    fill([innerpointsx(i),tp1x,tp3x,tp2x],[innerpointsy(i),tp1y,tp3y,tp2y],'b')
+                    axis equal;
+                end
                 B=B+polyarea([innerpointsx(i),tp1x,tp3x,tp2x],[innerpointsy(i),tp1y,tp3y,tp2y]);
-                string=sprintf('Area = %f',B);
-                title(string);
-                figure(2);
-                movegui(2,'northwest');
-                hold on;
-                fill([innerpointsx(i),tp1x,tp3x,tp2x],[innerpointsy(i),tp1y,tp3y,tp2y],'b')
+                if plots
+                    string=sprintf('Area = %f',B);
+                    title(string);
+                    figure(2);
+                    movegui(2,'northwest');
+                    fill([innerpointsx(i),tp1x,tp3x,tp2x],[innerpointsy(i),tp1y,tp3y,tp2y],'b')
+                    hold on;
+                    axis equal
+                end
                 outputx(outputcount+1,1:4)=[innerpointsx(i),tp1x,tp3x,tp2x];
                 outputy(outputcount+1,1:4)=[innerpointsy(i),tp1y,tp3y,tp2y];
                 outputcount=outputcount+1;
@@ -382,16 +409,22 @@ for i=1:length(innerpointsx)
     
 end
 if A-B<.00000000001
-    figure(1);
-    subplot(2,2,4);
-    string=sprintf('Area = %f and Area Matches!',B);
-    title(string)
+    if plots
+        figure(1);
+        subplot(2,2,4);
+        string=sprintf('Area = %f and Area Matches!',B);
+        title(string)
+    end
 else
-    figure(1);
-    subplot(2,2,4);
-    string=sprintf('Area = %f and !!!!!ERROR IN AREA!!!!!',B);
-    title(string)
+    if plots
+        figure(1);
+        subplot(2,2,4);
+        string=sprintf('Area = %f and !!!!!ERROR IN AREA!!!!!',B);
+        title(string)
+    end
     error('Area Mismatch');
 end
-figure(2);
+if plots
+    figure(2);
+end
 end
