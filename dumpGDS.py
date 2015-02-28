@@ -60,6 +60,7 @@ for fileName in os.listdir ( path ) :
 			#print type ( coords )
 			for x in coords :
 				if  x == "array" :
+					#writeFile . write ( "  ;\n" + "POLYGON " ) 
 					writeFile . write ( "\n" + "POLYGON " ) 
 				else :
 					writeFile . write ( str ( x ) + " " ) 
@@ -80,9 +81,13 @@ for fileName in os.listdir ( path ) :
 		#print type ( coords )
 		for x in coords :
 			if  x == "array" :
+				#writeFile . write ( "  ;\n" + "POLYGON " ) 
 				writeFile . write ( "\n" + "POLYGON " ) 
 			else :
 				writeFile . write ( str ( x ) + " " ) 
 	
+		#the last half colomn 
+		#writeFile . write ( "  ;\n" ) 
+
 		writeFile.close()
 		print ( "close the file %s.txt\n" % cellName )

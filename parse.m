@@ -17,7 +17,9 @@ if choice
 else
     matfiles=1;
 end
-for i=1:length(matfiles)
+
+%get rid of . and ..
+for i=3:length(matfiles) 
     writex=[];
     writey=[];
     output=[];
@@ -27,11 +29,16 @@ for i=1:length(matfiles)
         figure(3);
         close 3;
     end
+
     if choice
-        if ~strcmp ( matfiles(i).name , '.gitignore' )
-            fid = fopen ( strcat ( 'txt/' , matfiles(i).name) ) ;
+        if ~(strcmp ( matfiles(i).name , '.gitignore' ) ...
+           || strcmp ( matfiles(i).name , '.' ) ...
+           || strcmp ( matfiles(i).name , '..' ) )
+            readFile    = strcat ( 'txt/' , matfiles(i).name ) ;
+            disp ( readFile ) ;
+            fid         = fopen ( readFile ) ;
         end
-        matfiles(i).name
+        %matfiles(i).name
     else
         %
         fid = fopen('test.lef');
@@ -46,12 +53,15 @@ for i=1:length(matfiles)
             aline = fgetl(fid);
             if length(aline)>14
                 
-                if aline(9:15)=='POLYGON'
-                    saved=aline(17:end);
+                if aline(1:7)=='POLYGON'
+                    saved=aline(8:end);
                     saved=str2num(saved);
+                    disp ( saved ) ;
                     %count=count+1
+                    disp ( ' pre square ' ) ;
                     [x,y,newx,newy,orderedvecx,orderedvecy,outputx,outputy]=square(saved,plots);
                     %input('Press Enter for next figure:');
+                    disp ( ' post square ' ) ;
                     writex=[writex;outputx];
                     writey=[writey;outputy];
                 end

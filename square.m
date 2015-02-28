@@ -87,7 +87,7 @@ for i=1:z_length/2 %number of points
             dummy=yup;
         end
         for i=1:length(dummy)
-            if (min(comp1(2),comp2(2))<dummy(i))&&(dummy(i)<max(comp1(2),comp2(2)))
+            if (min(comp1(2),comp2(2))<dummy(i))&(dummy(i)<max(comp1(2),comp2(2)))
                 newx(count)=comp1(1);
                 newy(count)=dummy(i);
                 count=count+1;
@@ -106,7 +106,7 @@ for i=1:z_length/2 %number of points
             dummy=xright;
         end
         for i=1:length(dummy)
-            if (min(comp1(1),comp2(1))<dummy(i))&&(dummy(i)<max(comp1(1),comp2(1)))
+            if (min(comp1(1),comp2(1))<dummy(i))&(dummy(i)<max(comp1(1),comp2(1)))
                 newx(count)=dummy(i);
                 newy(count)=comp1(2);
                 count=count+1;
@@ -182,12 +182,12 @@ for i=1:length(orderedvecx)
                 prev=i-1;
                 post=i+1;
             end
-            if ~(((orderedvecx(prev)==tp1x)&&(orderedvecy(prev)==tp1y))||((orderedvecx(post)==tp1x)&&(orderedvecy(post)==tp1y)))
+            if ~(((orderedvecx(prev)==tp1x)&(orderedvecy(prev)==tp1y))|((orderedvecx(post)==tp1x)&(orderedvecy(post)==tp1y)))
                 if ~bettersandwich(orderedvecx(i),orderedvecy(i),tp1x,tp1y,orderedvecx,orderedvecy)
                     continue
                 end
             end
-            if ~(((orderedvecx(prev)==tp2x)&&(orderedvecy(prev)==tp2y))||((orderedvecx(post)==tp2x)&&(orderedvecy(post)==tp2y)))
+            if ~(((orderedvecx(prev)==tp2x)&(orderedvecy(prev)==tp2y))|((orderedvecx(post)==tp2x)&(orderedvecy(post)==tp2y)))
                 if ~bettersandwich(orderedvecx(i),orderedvecy(i),tp2x,tp2y,orderedvecx,orderedvecy)
                     continue
                 end
@@ -209,7 +209,8 @@ for i=1:length(orderedvecx)
                     continue
                 end
             else
-                if ~(((orderedvecx(prev)==tp3x)&&(orderedvecy(prev)==tp3y))||((orderedvecx(post)==tp3x)&&(orderedvecy(post)==tp3y)))
+                if ~(((orderedvecx(prev)==tp3x)&(orderedvecy(prev)==tp3y))|((orderedvecx(post)==tp3x)&(orderedvecy(post)==tp3y)))
+                    save bug.mat ;
                     if ~bettersandwich(tp1x,tp1y,tp3x,tp3y,orderedvecx,orderedvecy)
                         continue
                     end
@@ -232,7 +233,7 @@ for i=1:length(orderedvecx)
                     continue
                 end
             else
-                if ~(((orderedvecx(prev)==tp3x)&&(orderedvecy(prev)==tp3y))||((orderedvecx(post)==tp3x)&&(orderedvecy(post)==tp3y)))
+                if ~(((orderedvecx(prev)==tp3x)&(orderedvecy(prev)==tp3y))|((orderedvecx(post)==tp3x)&(orderedvecy(post)==tp3y)))
                     if ~bettersandwich(tp2x,tp2y,tp3x,tp3y,orderedvecx,orderedvecy)
                         continue
                     end
@@ -343,7 +344,7 @@ for i=1:length(innerpointsx)
                     continue
                 end
             else
-                if ~(((orderedvecx(prev)==tp3x)&&(orderedvecy(prev)==tp3y))||((orderedvecx(post)==tp3x)&&(orderedvecy(post)==tp3y)))
+                if ~(((orderedvecx(prev)==tp3x)&(orderedvecy(prev)==tp3y))|((orderedvecx(post)==tp3x)&(orderedvecy(post)==tp3y)))
                     if ~bettersandwich(tp1x,tp1y,tp3x,tp3y,orderedvecx,orderedvecy)
                         continue
                     end
@@ -366,7 +367,7 @@ for i=1:length(innerpointsx)
                     continue
                 end
             else
-                if ~(((orderedvecx(prev)==tp3x)&&(orderedvecy(prev)==tp3y))||((orderedvecx(post)==tp3x)&&(orderedvecy(post)==tp3y)))
+                if ~(((orderedvecx(prev)==tp3x)&(orderedvecy(prev)==tp3y))|((orderedvecx(post)==tp3x)&(orderedvecy(post)==tp3y)))
                     if ~bettersandwich(tp2x,tp2y,tp3x,tp3y,orderedvecx,orderedvecy)
                         continue
                     end
@@ -422,7 +423,7 @@ else
         string=sprintf('Area = %f and !!!!!ERROR IN AREA!!!!!',B);
         title(string)
     end
-    error('Area Mismatch');
+    %error('Area Mismatch');
 end
 if plots
     figure(2);
