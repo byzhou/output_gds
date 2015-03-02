@@ -193,7 +193,6 @@ for i=1:length(orderedvecx)
                 end
             end
             
-            save bug.mat;
             ind1=find((orderedvecx==tp1x)&(orderedvecy==tp1y));
             if ind1==1
                 prev=length(orderedvecx);
@@ -211,7 +210,6 @@ for i=1:length(orderedvecx)
                 end
             else
                 if ~(((orderedvecx(prev)==tp3x)&(orderedvecy(prev)==tp3y))|((orderedvecx(post)==tp3x)&(orderedvecy(post)==tp3y)))
-                    save bug.mat ;
                     if ~bettersandwich(tp1x,tp1y,tp3x,tp3y,orderedvecx,orderedvecy)
                         continue
                     end
