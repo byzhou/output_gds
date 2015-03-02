@@ -9,7 +9,7 @@ import gdspy
 
 #choos the folder
 #choose the standard cell
-fileName	= "TBUF_X1.txt"
+fileName	= "AND2_X1.txt"
 cellName	= fileName[:-4]
 gdsii	   = gdspy.GdsImport ( './gds/' + cellName + '.gds' )
 cellinfo	= gdsii.extract ( cellName )
@@ -36,6 +36,8 @@ firstInst   = ( regux . search ( strInst ) ) . group ()
 instWithLayer = cellinfo.get_polygons ( firstInst )
 #transform into string
 strWithLayer = str ( instWithLayer )
+#print all the cell info
+print ( "Here are all the cell info %s \n" % instWithLayer ) 
 
 #print cellName
 if cellName != "FILLCELL_X1" and  cellName != "FILLCELL_X2" and  cellName != "FILLCELL_X4"  and  cellName != "FILLCELL_X8"  and  cellName != "FILLCELL_X16"  and  cellName != "FILLCELL_X32" :
@@ -49,7 +51,7 @@ if cellName != "FILLCELL_X1" and  cellName != "FILLCELL_X2" and  cellName != "FI
 	#find out the end position of the layer 10
 	endpos	  = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
 	#find out the number tokens on the layer 10
-	numToken	= re.compile ( "\w+\.\w+" "|array" )
+	numToken	= re.compile ( "[-|\s]\w+\.\w+" "|array" )
 	#write all the coordinates
 	coords	  = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
 	#print type ( coords )
@@ -69,7 +71,7 @@ endToken	= re.compile ( "\(\w+\, 0\)\: \[array\(\[\[" )
 #find out the end position of the layer 11
 endpos	  = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
 #find out the number tokens on the layer 11
-numToken	= re.compile ( "\w+\.\w+" "|array" )
+numToken	= re.compile ( "[-|\s]\w+\.\w+" "|array" )
 #write all the coordinates
 coords	  = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
 #print type ( coords )

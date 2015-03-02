@@ -1,4 +1,6 @@
-function parse(choice,plots)
+%function parse(choice,plots)
+choice = 1 ;
+plots  = 1 ;
 %choice 0 is standard choose file
 %choice 1 is all files
 %plots 0 is no plotting
@@ -54,9 +56,10 @@ for i=3:length(matfiles)
             if length(aline)>14
                 
                 if aline(1:7)=='POLYGON'
-                    saved=aline(8:end);
+                    saved=aline(9:end);
                     saved=str2num(saved);
                     disp ( saved ) ;
+                    disp ( length ( saved ) ) ;
                     %count=count+1
                     disp ( ' pre square ' ) ;
                     [x,y,newx,newy,orderedvecx,orderedvecy,outputx,outputy]=square(saved,plots);

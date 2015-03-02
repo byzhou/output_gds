@@ -193,7 +193,8 @@ for i=1:length(orderedvecx)
                 end
             end
             
-            ind1=find(orderedvecx==tp1x&orderedvecy==tp1y);
+            save bug.mat;
+            ind1=find((orderedvecx==tp1x)&(orderedvecy==tp1y));
             if ind1==1
                 prev=length(orderedvecx);
                 post=2;
@@ -423,7 +424,7 @@ else
         string=sprintf('Area = %f and !!!!!ERROR IN AREA!!!!!',B);
         title(string)
     end
-    %error('Area Mismatch');
+    error('Area Mismatch');
 end
 if plots
     figure(2);

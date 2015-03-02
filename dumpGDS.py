@@ -54,7 +54,7 @@ for fileName in os.listdir ( path ) :
 			#find out the end position of the layer 10
 			endpos	  = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
 			#find out the number tokens on the layer 10
-			numToken	= re.compile ( "\w+\.\w+" "|array" )
+			numToken	= re.compile ( "[-|\s]\w+\.\w+" "|array" )
 			#write all the coordinates
 			coords	  = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
 			#print type ( coords )
@@ -75,7 +75,7 @@ for fileName in os.listdir ( path ) :
 		#find out the end position of the layer 11
 		endpos	  = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
 		#find out the number tokens on the layer 11
-		numToken	= re.compile ( "\w+\.\w+" "|array" )
+		numToken	= re.compile ( "[-|\s]\w+\.\w+" "|array" )
 		#write all the coordinates
 		coords	  = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
 		#print type ( coords )
