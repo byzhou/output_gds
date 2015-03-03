@@ -1,6 +1,6 @@
 %function parse(choice,plots)
 choice = 1 ;
-plots  = 1 ;
+plots  = 0 ;
 %choice 0 is standard choose file
 %choice 1 is all files
 %plots 0 is no plotting
@@ -43,7 +43,7 @@ for i=3:length(matfiles)
         %matfiles(i).name
     else
         %
-        fid = fopen('test.lef');
+        fid = fopen('txt/AND2_X1.txt');
         %
     end
     %count=0;
@@ -111,32 +111,32 @@ for i=3:length(matfiles)
         else
             for j = 1 : a
                 % write the info of the first and the third number
-                fprintf ( fid , '%5.2f %5.2f %5.2f %5.2f \n' , ...
-                        wirtex ( j , 1 ) , writey ( j , 1 ) , ...
-                        wirtex ( j , 5 ) , writey ( j , 6 ) ) ;
+                %fprintf ( fid , '%5.2f %5.2f %5.2f %5.2f \n' , wirtex ( j , 1 ) , writey ( j , 1 ) , wirtex ( j , 5 ) , writey ( j , 6 ) ) ;
             end
         end
 
-        %close write file
+        for j=1:a
+            output(j,1)=writex(j,1);
+            output(j,2)=writey(j,1);
+            output(j,3)=writex(j,2);
+            output(j,4)=writey(j,2);
+            output(j,5)=writex(j,3);
+            output(j,6)=writey(j,3);
+            output(j,7)=writex(j,4);
+            output(j,8)=writey(j,4);
+            %disp ( output ( j , 1 ) ) ;
+            fprintf ( fid , '%5.2f %5.2f %5.2f %5.2f \n' , writex ( j , 1 ) , writey ( j , 1 ) , writex ( j , 3 ) , writey ( j , 3 ) ) ;
+        end
+        %save('string','output','-ascii');
+        
+        %close read file  
         closeresult = fclose(fid);
         if closeresult == 0
             disp('File close successful')
         else
             disp('File close not successful')
         end
-%        for j=1:a
-%            output(j,1)=writex(j,1);
-%            output(j,2)=writey(j,1);
-%            output(j,3)=writex(j,2);
-%            output(j,4)=writey(j,2);
-%            output(j,5)=writex(j,3);
-%            output(j,6)=writey(j,3);
-%            output(j,7)=writex(j,4);
-%            output(j,8)=writey(j,4);
-%            %disp ( output ( j , 1 ) ) ;
-%        end
-        %save(string,output,'-ascii');
-        
+
     end
 end
 toc

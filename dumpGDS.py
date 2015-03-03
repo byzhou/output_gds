@@ -13,7 +13,7 @@ outputPath  = './txt/'
 for fileName in os.listdir ( path ) :
 
 	#make sure the file reading do not conflict with version control
-	if fileName != '.gitignore' and fileName != 'NangateOpenCellLibrary.gds': 
+	if fileName != '.gitignore' and fileName != 'NangateOpenCellLibrary.gds' and fileName != '.nfs\w+': 
 		#choose the standard cell
 		cellName	= fileName[:-4]
 		gdsii	   = gdspy.GdsImport ( path + cellName + '.gds' )
@@ -54,7 +54,7 @@ for fileName in os.listdir ( path ) :
 			#find out the end position of the layer 10
 			endpos	  = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
 			#find out the number tokens on the layer 10
-			numToken	= re.compile ( "[-|\s]\w+\.\w+" "|array" )
+			numToken	= re.compile ( "\w\.\s" "|[-|\s]\w+\.\w+" "|array" )
 			#write all the coordinates
 			coords	  = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
 			#print type ( coords )
@@ -75,7 +75,7 @@ for fileName in os.listdir ( path ) :
 		#find out the end position of the layer 11
 		endpos	  = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
 		#find out the number tokens on the layer 11
-		numToken	= re.compile ( "[-|\s]\w+\.\w+" "|array" )
+		numToken	= re.compile ( "\w\.\s" "|[-|\s]\w+\.\w+" "|array" )
 		#write all the coordinates
 		coords	  = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
 		#print type ( coords )

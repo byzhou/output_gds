@@ -51,7 +51,7 @@ if cellName != "FILLCELL_X1" and  cellName != "FILLCELL_X2" and  cellName != "FI
 	#find out the end position of the layer 10
 	endpos	  = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
 	#find out the number tokens on the layer 10
-	numToken	= re.compile ( "[-|\s]\w+\.\w+" "|array" )
+	numToken	= re.compile ( "\w\.\s" "|[-|\s]\w+\.\w+" "|array" )
 	#write all the coordinates
 	coords	  = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
 	#print type ( coords )
@@ -71,7 +71,7 @@ endToken	= re.compile ( "\(\w+\, 0\)\: \[array\(\[\[" )
 #find out the end position of the layer 11
 endpos	  = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
 #find out the number tokens on the layer 11
-numToken	= re.compile ( "[-|\s]\w+\.\w+" "|array" )
+numToken	= re.compile ( "\w\.\s" "|[-|\s]\w+\.\w+" "|array" )
 #write all the coordinates
 coords	  = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
 #print type ( coords )
