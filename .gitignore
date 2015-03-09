@@ -2,3 +2,6 @@
 gds
 rect
 *~
+*.gds
+*.tar
+*.log
