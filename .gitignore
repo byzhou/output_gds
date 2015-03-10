@@ -5,3 +5,4 @@ rect
 *.gds
 *.tar
 *.log
+*.map
