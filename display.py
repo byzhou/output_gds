@@ -13,7 +13,7 @@ gdsii = gdspy.GdsImport('gds/NangateOpenCellLibrary.gds')
 for cell_name in gdsii.cell_dict:
 #extract the info in each standard library
     gdsii.extract(cell_name)
-    print ( cell_name )
+#    print ( cell_name )
 
 #import the design
 design		= gdspy.GdsImport ( 'TjIn.gds' )
